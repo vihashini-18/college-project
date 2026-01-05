@@ -1,37 +1,16 @@
 🍫 Chocolate Rating Predictor
 
-Predict chocolate bar ratings using machine learning.
-A fully interactive Streamlit web app that allows users to explore and predict chocolate ratings based on cocoa content, company, bean type, and origin.
+Predict the rating of a chocolate bar based on its characteristics using a machine learning model. This interactive web app allows users to explore chocolate data and get predicted ratings with a polished, user-friendly interface.
 
-Live Demo: https://college-project-mbf6jkf9xyagbjqtgswfwt.streamlit.app/
+Live Demo: Chocolate Rating Predictor
 
-🏆 Key Features
+📝 Overview
 
-Predict Chocolate Ratings: Enter chocolate details to get a predicted rating (0–5 scale).
-
-Interactive UI: Dropdowns populated from real dataset values, slider for cocoa percentage.
-
-Feature Insights: Visualize top 5 features influencing the prediction.
-
-Dataset Overview: Sidebar histogram showing rating distribution.
-
-Deployment Ready: Fully functional on Streamlit Cloud.
-
-🛠 Technology Stack
-Technology	Purpose
-Python	Core programming language
-Streamlit	Web app UI & interactivity
-scikit-learn	Machine learning model (ExtraTreesRegressor)
-Pandas	Data handling & preprocessing
-NumPy	Numerical operations
-Matplotlib	Visualization of distributions and feature importance
-📊 Dataset
-
-The app uses the Flavors of Cacao dataset, containing:
+The Chocolate Rating Predictor predicts chocolate bar ratings (out of 5) using features like:
 
 Company / Maker
 
-Specific Bar Name
+Chocolate Bar Name
 
 Cocoa Percentage
 
@@ -43,21 +22,47 @@ Broad Bean Origin
 
 Review Year
 
+It is built with Python, Streamlit, and a trained ExtraTrees Regressor model.
+
+⚡ Features
+
+Interactive dropdowns and sliders for selecting chocolate features
+
+Live prediction of chocolate rating
+
+Feature importance visualization for understanding key factors
+
+Dataset statistics and rating histogram in sidebar
+
+Chocolate-themed polished UI
+
+📊 Dataset
+
+The dataset used is flavors_of_cacao.csv, containing chocolate reviews including:
+
+Company / Maker
+
+Specific Bar Name
+
+Cocoa Percentage
+
+Bean Type
+
+Broad Bean Origin
+
 Rating
 
-Dataset is included in the repository as flavors_of_cacao.csv.
+Review Year
 
-⚙️ How It Works
-
-Load and preprocess the dataset (handle missing values, encode categorical features).
-
-Train an ExtraTreesRegressor model on the dataset.
-
-Provide interactive inputs in the Streamlit sidebar.
-
-Predict rating and display top features influencing the prediction.
-
-💻 Installation & Local Run
+🛠 Built With
+Technology	Purpose
+Python	Core programming language
+Streamlit	Web app framework
+scikit-learn	Machine learning model
+pandas	Data manipulation
+numpy	Numerical computations
+matplotlib	Charts and visualizations
+🚀 How to Run Locally
 
 Clone the repository
 
@@ -65,7 +70,7 @@ git clone https://github.com/vihashini-18/college-project.git
 cd college-project
 
 
-Create a virtual environment
+Create and activate Python environment
 
 python -m venv venv
 # Windows
@@ -83,20 +88,18 @@ Run the Streamlit app
 
 streamlit run app.py
 
-📈 Model Details
+🧠 Model Details
 
 Model: ExtraTreesRegressor
 
-Reason for Choice: Handles nonlinear relationships and categorical variables effectively, provides feature importance insights, robust for tabular datasets.
+Purpose: Predict chocolate ratings based on multiple features
 
-Performance: Predicts ratings reasonably; subjective nature of ratings may introduce variance.
+Handles numerical and categorical data efficiently
 
-🎨 UI & User Experience
+Provides feature importance to interpret predictions
 
-Dropdowns populated from dataset for accurate input selection.
+📌 Notes
 
-Slider for cocoa content to allow precise input.
+Dropdowns populate from the dataset to ensure valid input values
 
-Feature importance chart helps understand what drives the predicted rating.
-
-Chocolate-themed color scheme for intuitive UX.
+Predictions are approximate since chocolate ratings are subjective
