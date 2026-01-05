@@ -22,7 +22,8 @@ st.markdown("Predict the rating of a chocolate bar based on its features!")
 # -----------------------------
 # Load dataset
 # -----------------------------
-df_ui = pd.read_csv(r"D:\archive (2)\flavors_of_cacao.csv")
+df_ui = pd.read_csv("flavors_of_cacao.csv")
+
 
 # Rename columns
 df_ui.columns = ['Company', 'BarName', 'REF', 'ReviewDate', 'CocoaPercent', 
