@@ -8,7 +8,7 @@ from sklearn.impute import SimpleImputer
 import matplotlib.pyplot as plt
 
 # -----------------------------
-# Page configuration
+# Page config
 # -----------------------------
 st.set_page_config(
     page_title="🍫 Chocolate Rating Predictor",
@@ -20,10 +20,9 @@ st.title("🍫 Chocolate Rating Predictor")
 st.markdown("Predict the rating of a chocolate bar based on its features!")
 
 # -----------------------------
-# Load dataset
+# Load dataset (relative path!)
 # -----------------------------
-df_ui = pd.read_csv("flavors_of_cacao.csv")
-
+df_ui = pd.read_csv("flavors_of_cacao.csv")  # relative path for deployment
 
 # Rename columns
 df_ui.columns = ['Company', 'BarName', 'REF', 'ReviewDate', 'CocoaPercent', 
@@ -54,7 +53,6 @@ df_train[cat_cols] = encoder.fit_transform(df_train[cat_cols])
 # Train model
 X = df_train.drop('Rating', axis=1)
 y = df_train['Rating']
-
 model = ExtraTreesRegressor(n_estimators=500, max_depth=15, random_state=42, n_jobs=-1)
 model.fit(X, y)
 
@@ -73,14 +71,20 @@ ax.set_ylabel('Count')
 st.sidebar.pyplot(fig)
 
 # -----------------------------
+# Dropdown options sorted by popularity
+# -----------------------------
+def sorted_by_popularity(col):
+    return df_ui[col].value_counts().index.tolist()
+
+company_options = sorted_by_popularity('Company')
+bar_options = sorted_by_popularity('BarName')
+location_options = sorted_by_popularity('CompanyLocation')
+bean_options = sorted_by_popularity('BeanType')
+broad_options = sorted_by_popularity('BroadBeanOrigin')
+
+# -----------------------------
 # User Input Form
 # -----------------------------
-company_options = df_ui['Company'].unique()
-location_options = df_ui['CompanyLocation'].unique()
-bar_options = df_ui['BarName'].unique()
-bean_options = df_ui['BeanType'].unique()
-broad_options = df_ui['BroadBeanOrigin'].unique()
-
 with st.form("choco_form"):
     st.subheader("Enter Chocolate Details")
     company = st.selectbox("Company", company_options)
@@ -108,7 +112,7 @@ if submitted:
         'BroadBeanOrigin':[broad_origin]
     })
 
-    # Impute and encode
+    # Impute & encode for model
     input_df[num_cols] = num_imputer.transform(input_df[num_cols])
     input_df[cat_cols] = cat_imputer.transform(input_df[cat_cols])
     input_df[cat_cols] = encoder.transform(input_df[cat_cols])
